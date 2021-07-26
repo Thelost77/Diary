@@ -1,0 +1,95 @@
+﻿<mah:MetroWindow x:Class="Diary.Views.AddEditStudentView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:Diary"
+        mc:Ignorable="d"
+        Name="AddEditStudentWindow"
+        Title="Dane ucznia" Height="520" Width="400"
+        WindowStartupLocation="CenterScreen">   
+        
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label 
+            Visibility="{Binding IsUpdate, 
+            Converter={StaticResource BooleanToVisibilityConverter}}" 
+            Content="Id:" Margin="5"/>
+        <TextBox 
+            Visibility="{Binding IsUpdate, 
+            Converter={StaticResource BooleanToVisibilityConverter}}" 
+            Text="{Binding Student.Id}" 
+            IsReadOnly ="True" 
+            Grid.Column="1" 
+            Margin="5"/>
+        
+        <Label Grid.Row="1" Content ="Imię:" Margin="5"/>
+        <TextBox Text="{Binding Student.FirstName,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}" Grid.Row="1" Grid.Column="1" Margin="5"/>
+        
+        <Label Grid.Row="2" Content ="Nazwisko:" Margin="5"/>
+        <TextBox Text="{Binding Student.LastName,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.Row="2" Grid.Column="1" Margin="5"/>
+        
+        <Label Grid.Row="3" Content ="Matematyka:" Margin="5"/>
+        <TextBox Text="{Binding Student.Math}" Grid.Row="3" Grid.Column="1" Margin="5"/>
+        
+        <Label Grid.Row="4" Content ="Fizyka:" Margin="5"/>
+        <TextBox Text="{Binding Student.Physics}" Grid.Row="4" Grid.Column="1" Margin="5"/>
+        
+        <Label Grid.Row="5" Content ="Technologia:" Margin="5"/>
+        <TextBox Text="{Binding Student.Technology}" Grid.Row="5" Grid.Column="1" Margin="5"/>
+        
+        <Label Grid.Row="6" Content ="Język polski:" Margin="5"/>
+        <TextBox Text="{Binding Student.PolishLang}" Grid.Row="6" Grid.Column="1" Margin="5"/>
+        
+        <Label Grid.Row="7" Content ="Język obcy:" Margin="5"/>
+        <TextBox Text="{Binding Student.ForeignLang}" Grid.Row="7" Grid.Column="1" Margin="5"/>
+        
+        <Label Grid.Row="8" Content ="Grupa:" Margin="5"/>
+        <ComboBox 
+            Grid.Row="8" 
+            Grid.Column="1" 
+            Margin="5"
+            ItemsSource="{Binding Groups}"
+            SelectedValue="{Binding Student.Group.Id,UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True}"
+            DisplayMemberPath="Name"
+            SelectedValuePath="Id"
+            />
+
+        <CheckBox IsChecked="{Binding Student.AdditionalActivities}" Content="Zajęcia dodatkowe"   Grid.Row="9" Grid.Column="1" Margin="5"/>
+
+        <Label Grid.Row="10" Content ="Uwagi:" Margin="5"/>
+        <TextBox Text="{Binding Student.Comments}" 
+                 Grid.Row="10" 
+                 Grid.Column="1" 
+                 Margin="5"
+                 TextWrapping="Wrap"
+                 AcceptsReturn="True"
+                 />
+
+        <StackPanel Orientation="Horizontal" Grid.Row="11" Grid.Column="1" HorizontalAlignment="Right">
+            <Button Command ="{Binding CloseCommand}" CommandParameter="{Binding ElementName=AddEditStudentWindow}" Content="Anuluj" Height="25" Width="100" Margin="5"/>
+            <Button Command ="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=AddEditStudentWindow}" Content="Zatwierdź" Height="25" Width="100" Margin="5"/>
+        </StackPanel>
+
+    </Grid>
+    </mah:MetroWindow>

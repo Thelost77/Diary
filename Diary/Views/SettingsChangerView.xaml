@@ -1,0 +1,48 @@
+﻿<mah:MetroWindow x:Class="Diary.Views.SettingsChangerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:Diary"
+        mc:Ignorable="d"
+        Name="SettingsWindow"
+        Title="Ustawienia" Height="320" Width="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <Label Grid.Row="0" Content ="Adres Serwera:" Margin="10"/>
+        <TextBox Text="{Binding ConnectionHelper.NewServerAddress}"                 
+                 Grid.Row="0" Grid.Column="1" Name ="TbServerAddress" Margin="10"/>
+
+        <Label Grid.Row="1" Content ="Nazwa Serwera:" Margin="10"/>
+        <TextBox Text="{Binding ConnectionHelper.NewServerName}" Grid.Row="1" Grid.Column="1" Name ="TbServerName" Margin="10"/>
+
+        <Label Grid.Row="2" Content ="Nazwa bazy danych:" Margin="10"/>
+        <TextBox Text="{Binding ConnectionHelper.NewNameOfDatabase}" Grid.Row="2" Grid.Column="1" Name ="TbNameOfDatabase" Margin="10"/>
+
+        <Label Grid.Row="3" Content ="Nazwa użytkownika:" Margin="10"/>
+        <TextBox Text="{Binding ConnectionHelper.NewUsername}" Grid.Row="3" Grid.Column="1" Name ="TbUsername" Margin="10"/>
+
+        <Label Grid.Row="4" Content ="Hasło:" Margin="10"/>
+        <TextBox Text="{Binding ConnectionHelper.NewPassword}" Grid.Row="4" Grid.Column="1" Name ="TbPassword" Margin="10"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right">
+            <Button Command ="{Binding CloseCommand}" CommandParameter="{Binding ElementName=SettingsWindow}" Content="Anuluj" Height="25" Width="100" Margin="10"/>
+            <Button Command ="{Binding ConfirmCommand}" CommandParameter="{Binding ElementName=SettingsWindow}" Content="Zapisz" Height="25" Width="100" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>
