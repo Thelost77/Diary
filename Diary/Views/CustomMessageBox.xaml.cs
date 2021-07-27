@@ -21,10 +21,10 @@ namespace Diary.Views
     /// </summary>
     public partial class CustomMessageBox : MetroWindow
     {
-        public CustomMessageBox()
+        public CustomMessageBox(MBoxParams @params)
         {
             InitializeComponent();
-            DataContext = new MBoxViewModel();
+            DataContext = new MBoxViewModel(@params);
         }
     }
 }

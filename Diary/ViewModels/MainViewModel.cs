@@ -141,21 +141,23 @@ namespace Diary.ViewModels
         {
             if (!_helper.IsConnected(_connectionString))
             {
-                var messageBox = new CustomMessageBox();
+                var @params = new MBoxParams
+                {
+                    Message = "Błąd ładowania bazy danych,\nczy chcesz przejść do ustawień ?",
+                    Title = "Błąd ładowania bazy danych!",
+                    Accept = () =>
+                    {
+                        var settingschanger = new SettingsChangerView();
+                        settingschanger.ShowDialog();
+                    },
+                    Rejection = () =>
+                        Application.Current.Shutdown()
+                };
+
+                var messageBox = new CustomMessageBox(@params);
                 messageBox.ShowDialog();
             }
         }
-
-        //    var result = MessageBox.Show("Błąd łączenia z bazą danych, czy chcesz uruchomić ustawienia?", "Błąd ładowania bazy danych", MessageBoxButton.YesNo);
-        //    if (result == MessageBoxResult.Yes)
-        //    {
-        //        var settingschanger = new SettingsChangerView();
-        //        settingschanger.ShowDialog();
-        //    }
-        //    else
-        //    {
-        //        Application.Current.Shutdown();
-
 
         private void AddEditStudentsWindow_Closed(object sender, EventArgs e)
         {

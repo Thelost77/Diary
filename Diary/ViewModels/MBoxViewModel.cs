@@ -11,14 +11,29 @@ using System.Windows.Input;
 
 namespace Diary.ViewModels
 {
+    public class MBoxParams
+    {
+        public string Message { get; set; }
+        public string Title { get; set; }
+        public Action Accept { get; set; }
+        public Action Rejection { get; set; }
+    }
+
     public class MBoxViewModel : ViewModelBase
     {
         private string _message;
         private string _title;
-        public MBoxViewModel()
+        private readonly Action _accept;
+        private readonly Action _rejection;
+
+        public MBoxViewModel(MBoxParams @params)
         {
-            Message = "Błąd ładowania bazy danych,\nczy chcesz przejść do ustawień?";
-            Title = "Błąd ładowania bazy danych!";
+            Message = @params.Message;
+            Title = @params.Title;
+            _accept = @params.Accept;
+            _rejection = @params.Rejection;
+
+
             YesCommand = new RelayCommand(Yes);
             NoCommand = new RelayCommand(No);
         }                    
@@ -54,14 +69,16 @@ namespace Diary.ViewModels
         }
         private void No(object obj)
         {
-            Application.Current.Shutdown();
+            _rejection.Invoke();
         }
 
         private void Yes(object obj)
         {
-            var settingschanger = new SettingsChangerView();
+            
             CloseWindow(obj as Window);
-            settingschanger.ShowDialog();
-        }        
+            _accept.Invoke();
+        }
+        
+
     }
 }
