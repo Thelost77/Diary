@@ -212,6 +212,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\MBoxParams.cs" />
     <Compile Include="SqlHelper.cs" />
     <Compile Include="ViewModels\MBoxViewModel.cs" />
     <Compile Include="ViewModels\SettingsChangerViewModel.cs" />

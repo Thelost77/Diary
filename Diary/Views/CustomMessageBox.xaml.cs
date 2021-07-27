@@ -1,4 +1,5 @@
-﻿using Diary.ViewModels;
+﻿using Diary.Models;
+using Diary.ViewModels;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;

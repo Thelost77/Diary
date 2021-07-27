@@ -1,4 +1,5 @@
 ﻿using Diary.Commands;
+using Diary.Models;
 using Diary.Properties;
 using Diary.Views;
 using System;
@@ -10,15 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 
 namespace Diary.ViewModels
-{
-    public class MBoxParams
-    {
-        public string Message { get; set; }
-        public string Title { get; set; }
-        public Action Accept { get; set; }
-        public Action Rejection { get; set; }
-    }
-
+{   
     public class MBoxViewModel : ViewModelBase
     {
         private string _message;
